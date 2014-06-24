@@ -1,4 +1,5 @@
 nodejsmongo
 ===========
 
-Estudo NODEJS
+NodeJS + MongoDB
+
