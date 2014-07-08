@@ -1,0 +1,14 @@
+<% include ../header %>
+
+<form action="/campanha" method="post">
+	
+	<input type="text" name="campanha[nome]" placeholder="Nome">
+	<input type="text" name="campanha[url]" placeholder="URL">
+	<input type="text" name="campanha[vouchers]" placeholder="Quantidade Vouchers">
+	<input type="text" name="campanha[inicio]" placeholder="Início DD/MM/YYYY HH:mm">
+
+	
+	<button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+
+<% include ../footer %>

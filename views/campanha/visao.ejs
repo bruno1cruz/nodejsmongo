@@ -1,0 +1,33 @@
+<% include ../header %>
+
+<h1><%- campanha.nome %><span class="contador">(<%- campanha.contador%>)</span></h1>
+<span id="online_counter">0</span>
+
+<form action="/campanha/<%- campanha.id%>/inscrever" method="post" onsubmit="javascript:inscrever();return false;">
+	
+	<input type="text" name="inscricao[usuario][email]" id="email" placeholder="E-mail">
+
+	
+	<button type="submit" class="btn btn-primary">Inscrever-se</button>
+</form>
+
+
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+  var socket = io.connect('http://localhost:3000');
+
+  socket.on('notify-new-online', function(online_counter) {
+    document.getElementById("online_counter").innerHTML = online_counter;
+  });
+  socket.on('campanha:started', function(campanha) {
+    console.log(campanha.nome);
+  });
+  
+  function inscrever(){
+	  socket.emit('send-subscription', { "campanha" : "<%- campanha.id%>", "email": document.getElementById("email").value });
+  }
+
+</script>
+
+
+<% include ../footer %>

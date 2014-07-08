@@ -1,0 +1,15 @@
+{
+  "name": "megatip-ofertas",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+	  "express": "~3.4.7",
+	  "express-load": "~1.1.8",
+	  "ejs": "~0.8.5",
+	  "socket.io": "~0.9.16",
+	  "mongoose": "~3.8.4"
+  }
+}
