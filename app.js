@@ -35,7 +35,7 @@ load('models')
 load('sockets')
 .into(io);
 
-server.listen(3000, function(){
+server.listen(process.env.OPENSHIFT_NODEJS_PORT || 3000, function(){
   console.log("Megatip Ofertas - Online");
 });
 
