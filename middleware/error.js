@@ -1,5 +1,4 @@
 exports.notFound = function(req, res, next) {
-    console.error("## Erro inesperado: " + error);
     res.status(404);
     res.render('not-found');
 };
