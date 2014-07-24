@@ -4,6 +4,7 @@ exports.notFound = function(req, res, next) {
 };
 
 exports.serverError = function(error, req, res, next) {
+    console.log("## Erro inesperado: " + error);
   res.status(500);
   res.render('server-error', {error: error});
 };
