@@ -1,0 +1,14 @@
+<% include ../header %>
+
+<form action="/usuario" method="post">
+	
+	<input type="text" name="usuario[nome]" placeholder="Nome">
+	<input type="text" name="usuario[cpf]" placeholder="CPF">
+	<input type="text" name="usuario[email]" placeholder="E-mail">
+	<input type="password" name="usuario[senha]" placeholder="Senha">
+
+	
+	<button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+
+<% include ../footer %>

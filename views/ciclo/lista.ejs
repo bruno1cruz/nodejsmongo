@@ -1,0 +1,21 @@
+<% include ../header %>
+
+Ciclos
+
+<%
+function formatarData(_data){
+	return _data.getDate() + "/" + (_data.getMonth()+1) + "/" + _data.getFullYear();
+}
+%>
+
+<ul>
+	<% for(var i=0; i<ciclos.length; i++) {%>
+		<li>
+			<%= ciclos[i].nome %>
+			<%="("+formatarData(ciclos[i].inicio)+"-"+ formatarData(ciclos[i].fim) +")"%> - 
+			<a href="<%=ciclos[i].url%>/campanha">Nova Campanha</a>
+		</li>
+	<% } %>
+</ul>
+
+<% include ../footer %>

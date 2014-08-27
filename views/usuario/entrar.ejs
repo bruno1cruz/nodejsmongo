@@ -1,0 +1,12 @@
+<% include ../header %>
+
+<form action="/usuario/entrar" method="post">
+	
+	<input type="text" name="usuario[email]" placeholder="E-mail">
+	<input type="password" name="usuario[senha]" placeholder="Senha">
+
+	
+	<button type="submit" class="btn btn-primary">Entrar</button>
+</form>
+
+<% include ../footer %>

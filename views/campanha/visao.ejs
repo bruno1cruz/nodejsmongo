@@ -14,7 +14,7 @@
 
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
-  var socket = io.connect("http://localhost");
+  var socket = io.connect(window.location.hostname);
 
   socket.on('notify-new-online', function(online_counter) {
     document.getElementById("online_counter").innerHTML = online_counter;
@@ -28,6 +28,5 @@
   }
 
 </script>
-
 
 <% include ../footer %>

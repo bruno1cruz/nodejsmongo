@@ -1,0 +1,30 @@
+<% include ../header %>
+
+Ciclo: <%=ciclo.nome%>
+
+<form id="campanha_form" action="/<%=ciclo.url%>/campanha" method="post">
+	
+	<input type="text" name="campanha[nome]" placeholder="Nome">
+	<input type="text" name="campanha[vouchers]" placeholder="Quantidade Vouchers">
+	<input type="text" name="campanha[inicio]" placeholder="Início DD/MM/YYYY HH:mm">
+	
+	<hr/>
+
+	<h3>Item</h3>
+	<input type="text" name="campanha[itens][0][nome]" placeholder="Nome do Item">
+	<textarea rows="5" name="campanha[itens][0][descricao]" placeholder="Descrição do Item"></textarea>
+
+	<input type="hidden" name="campanha[ciclo][url]" value="<%=ciclo.url%>">
+	
+	<button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+
+<% include ../footer_js %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#campanha_form").on("submit", campanha.salvar);
+	});
+</script>
+
+<% include ../footer %>

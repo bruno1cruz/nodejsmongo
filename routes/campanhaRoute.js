@@ -1,9 +1,10 @@
 module.exports = function(app) {
 
-	campanhas = app.controllers.campanhaController;
+	var campanhas = app.controllers.campanhaController;
 
-	app.get('/campanha', campanhas.novo);
-	app.get('/campanha/:campanhaURL', campanhas.get);
-	app.post('/campanha', campanhas.cadastrar);
+	app.get('/:cicloURL/campanha', campanhas.novo);
+	app.get('/campanhas', campanhas.listar);
+	app.get('/:cicloURL/campanha/:campanhaURL', campanhas.get);
+	app.post('/:cicloURL/campanha', campanhas.cadastrar);
 	
 };

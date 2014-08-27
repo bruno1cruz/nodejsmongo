@@ -10,10 +10,8 @@ module.exports = function(app) {
 		},
 
 		cadastrar : function(req, res) {
-
-			var usuario = new Usuario(req.body.usuario);
 			
-			console.log("Tentando cadastrar: " + usuario.nome);
+			var usuario = new Usuario(req.body.usuario);
 
 			usuario.save(function() {
 				res.redirect('/usuarios');
@@ -25,12 +23,16 @@ module.exports = function(app) {
 
 			Usuario.find({},function(err,usuarios){
 				
-				console.log("Usuarios encontrados: " + usuarios.length);
-				
 				res.render('usuario/lista',{"usuarios":usuarios});
 				
 			});
 			
+		},
+
+		entrar : function(req, res) {
+
+			res.render('usuario/entrar');
+
 		}
 
 	/*

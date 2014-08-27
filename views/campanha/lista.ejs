@@ -1,0 +1,20 @@
+<% include ../header %>
+
+Campanhas
+
+<table>
+	<% for(var i=0; i<campanhas.length; i++) {%>
+		<tr>
+			<td><%= campanhas[i].nome %>(<%= campanhas[i].inicio %>)</td>
+			<td><%= campanhas[i].inicio %></td>
+		</tr>
+	<% } %>
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Início</th>
+		</tr>
+	</thead>
+</table>
+
+<% include ../footer %>

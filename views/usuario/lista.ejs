@@ -1,0 +1,11 @@
+<% include ../header %>
+
+Usuários
+
+<ul>
+	<% for(var i=0; i<usuarios.length; i++) {%>
+	   <li><%= usuarios[i].nome %></li>
+	<% } %>
+</ul>
+
+<% include ../footer %>

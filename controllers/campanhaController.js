@@ -1,6 +1,7 @@
 module.exports = function(app) {
 
 	var Campanha = app.models.campanha;
+	var Ciclo = app.models.ciclo;
 	var CronJob = require('cron').CronJob;
 	var tools = require('../lib/tools');
 	var EventEmitter = require('events').EventEmitter;
@@ -9,33 +10,44 @@ module.exports = function(app) {
 	var CampanhaController = {
 
 		novo : function(req, res) {
-			res.render('campanha/novo');
+			Ciclo.findOne({url : req.params.cicloURL},function(err, ciclo){
+				res.render('campanha/formulario', {"ciclo":ciclo });	
+			})
 		},
 		
 		get : function(req, res) {
 			
-			Campanha.findOne({"url" : req.params.campanhaURL},function(err,campanha){
-				
+			Campanha.findOne({"ciclo.url" : req.params.cicloURL,"url" : req.params.campanhaURL},function(err,campanha){
 				res.render('campanha/visao', {"campanha": campanha});
 			});
 			
 		},
 
+		listar : function(req, res) {
+			
+			Campanha.find(function(err,campanhas){
+				res.render('campanha/lista', {"campanhas": campanhas});
+			});
+			
+		},
 		cadastrar : function(req, res) {
 
 			var campanha = req.body.campanha;
 
 			campanha.inicio = tools.toDate(campanha.inicio);
+			campanha.url = tools.slug(campanha.nome);
 			
 			campanha = new Campanha(req.body.campanha);
-			
-			console.log("Tentando cadastrar: " + campanha.nome);
 
 			campanha.save(function() {
 				
 				eventEmitter.emit("campanha:created",campanha);
 				
-				res.redirect('/campanha/'+campanha.url);
+				res.json({
+						mensagem :'Campanha ' + campanha.nome + ' criada com sucesso.', 
+						redireciona:'/'+campanha.ciclo.url+'/campanha/'+campanha.url
+					
+				});
 			});
 
 		}
