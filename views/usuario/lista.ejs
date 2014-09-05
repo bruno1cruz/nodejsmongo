@@ -1,11 +1,34 @@
 <% include ../header %>
 
-Usuários
+<section class="content">
+	<div class="row">
 
-<ul>
-	<% for(var i=0; i<usuarios.length; i++) {%>
-	   <li><%= usuarios[i].nome %></li>
-	<% } %>
-</ul>
+		<div class="col-md-12">
+			<article class="widget">
+				<header class="widget__header">
+					<h3 class="widget__title">Usuários</h3>
+				</header>
+				
+				<div class="widget__content">
+					
+					<table class="table">
+						<tbody>
+							<% for(var i=0; i<usuarios.length; i++) {%>
+								<tr>
+									<td><%= usuarios[i].nome %></td>
+								</tr>
+							<% } %>
+						</tbody>
+						<thead>
+							<tr>
+								<th>Nome</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</article>
+		</div>
+	</div>
+</section>
 
 <% include ../footer %>

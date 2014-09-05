@@ -1,0 +1,32 @@
+<% include ../header %>
+
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<article class="widget">
+				<header class="widget__header">
+					<h3 class="widget__title">Usuário</h3>
+				</header>
+
+				<div class="widget__content">
+				
+					<form action="/usuario" method="post">
+	
+						<input type="text" name="usuario[nome]" placeholder="Nome" class="input-text">
+						<input type="text" name="usuario[cpf]" placeholder="CPF" class="input-text">
+						<input type="text" name="usuario[email]" placeholder="E-mail" class="input-text">
+						<input type="password" name="usuario[senha]" placeholder="Senha" class="input-text">
+					
+						
+						<button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
+					</form>
+
+					<div class="clearfix"></div>
+				</div>
+
+			</article>
+		</div>
+	</div>
+</section>
+
+<% include ../footer %>

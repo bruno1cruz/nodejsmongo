@@ -10,7 +10,7 @@ module.exports = function(app) {
 
   var campanha = Schema({
       nome: { type: String, required: true },
-      ciclo : { 
+      ciclo : {
           url : {type : String}
       },
       ranking :  [{ type: Schema.Types.ObjectId, ref: 'usuario' }],

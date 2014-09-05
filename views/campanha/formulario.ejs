@@ -1,23 +1,39 @@
 <% include ../header %>
 
-Ciclo: <%=ciclo.nome%>
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<article class="widget">
+				<header class="widget__header">
+					<h3 class="widget__title"><%=ciclo.nome%> &gt; Campanha</h3>
+				</header>
 
-<form id="campanha_form" action="/<%=ciclo.url%>/campanha" method="post">
+				<div class="widget__content">
+				
+					<form id="campanha_form" action="/<%=ciclo.url%>/campanha" method="post">
 	
-	<input type="text" name="campanha[nome]" placeholder="Nome">
-	<input type="text" name="campanha[vouchers]" placeholder="Quantidade Vouchers">
-	<input type="text" name="campanha[inicio]" placeholder="Início DD/MM/YYYY HH:mm">
-	
-	<hr/>
+						<input type="text" name="campanha[nome]" placeholder="Nome" value="<%=campanha.nome%>" class="input-text">
+						<input type="text" name="campanha[vouchers]" placeholder="Quantidade Vouchers" class="input-text">
+						<input type="text" name="campanha[inicio]" placeholder="Início DD/MM/YYYY HH:mm" class="input-text">
+						
+						<hr/>
+					
+						<h3>Item</h3>
+						<input type="text" name="campanha[itens][0][nome]" placeholder="Nome do Item" class="input-text">
+						<textarea rows="5" name="campanha[itens][0][descricao]" placeholder="Descrição do Item" class="textarea"></textarea>
+					
+						<input type="hidden" name="campanha[ciclo][url]" value="<%=ciclo.url%>">
+						
+						<button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
+					</form>
 
-	<h3>Item</h3>
-	<input type="text" name="campanha[itens][0][nome]" placeholder="Nome do Item">
-	<textarea rows="5" name="campanha[itens][0][descricao]" placeholder="Descrição do Item"></textarea>
+					<div class="clearfix"></div>
+				</div>
 
-	<input type="hidden" name="campanha[ciclo][url]" value="<%=ciclo.url%>">
-	
-	<button type="submit" class="btn btn-primary">Cadastrar</button>
-</form>
+			</article>
+		</div>
+	</div>
+</section>
 
 <% include ../footer_js %>
 

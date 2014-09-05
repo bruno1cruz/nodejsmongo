@@ -1,5 +1,6 @@
 module.exports = function(app) {
 
+	var ObjectId = require('mongoose').Types.ObjectId;
 	var Campanha = app.models.campanha;
 	var Ciclo = app.models.ciclo;
 	var CronJob = require('cron').CronJob;
@@ -10,11 +11,22 @@ module.exports = function(app) {
 	var CampanhaController = {
 
 		novo : function(req, res) {
+			
 			Ciclo.findOne({url : req.params.cicloURL},function(err, ciclo){
-				res.render('campanha/formulario', {"ciclo":ciclo });	
+			
+				if(req.query.id){
+					
+					Campanha.findOne({_id : new ObjectId(req.query.id)},function(err, campanha) {
+						res.render('campanha/formulario', {"ciclo":ciclo, "campanha" : campanha });
+					});
+					
+				} else {
+					res.render('campanha/formulario', {"ciclo":ciclo });
+				}
+			
 			})
 		},
-		
+
 		get : function(req, res) {
 			
 			Campanha.findOne({"ciclo.url" : req.params.cicloURL,"url" : req.params.campanhaURL},function(err,campanha){
@@ -25,12 +37,38 @@ module.exports = function(app) {
 
 		listar : function(req, res) {
 			
-			Campanha.find(function(err,campanhas){
-				res.render('campanha/lista', {"campanhas": campanhas});
-			});
+			Ciclo.findOne({url : req.params.cicloURL},function(err, ciclo){
+				
+				Campanha.find({"ciclo.url" : req.params.cicloURL},function(err,campanhas){
+					res.render('campanha/lista', {"ciclo":ciclo , "campanhas": campanhas});
+				}).sort('-inicio');
+			
+			})
 			
 		},
 		cadastrar : function(req, res) {
+
+			var campanha = req.body.campanha;
+
+			campanha.inicio = tools.toDate(campanha.inicio);
+			campanha.url = tools.slug(campanha.nome);
+			
+			campanha = new Campanha(req.body.campanha);
+
+			campanha.save(function() {
+				
+				eventEmitter.emit("campanha:created",campanha);
+				
+				res.json({
+						mensagem :'Campanha ' + campanha.nome + ' criada com sucesso.', 
+						redireciona:'/'+campanha.ciclo.url+'/campanha/'+campanha.url
+					
+				});
+			});
+
+		},
+		
+		atualizar : function(req, res) {
 
 			var campanha = req.body.campanha;
 

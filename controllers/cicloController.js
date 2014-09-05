@@ -7,7 +7,7 @@ module.exports = function(app) {
 
 		novo : function(req, res) {
 
-			res.render('ciclo/novo');
+			res.render('ciclo/formulario');
 		},
 
 		cadastrar : function(req, res) {

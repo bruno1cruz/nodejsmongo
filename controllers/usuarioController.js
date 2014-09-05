@@ -6,7 +6,7 @@ module.exports = function(app) {
 
 		novo : function(req, res) {
 
-			res.render('usuario/novo');
+			res.render('usuario/formulario');
 		},
 
 		cadastrar : function(req, res) {

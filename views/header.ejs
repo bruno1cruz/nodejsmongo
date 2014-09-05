@@ -7,22 +7,90 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="/javascripts/zepto.min.js"></script>
     -->
+    <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    
   </head>
   <body>
-    <div class="container-fluid">
-    
-      <ul>
-        <li><a href="/campanhas">Campanhas</a></li>
-        
-        <li><a href="/ciclo">Novo Ciclo</a></li>
-        <li><a href="/ciclos">Ciclos</a></li>
-        
-        <li><a href="/usuario">Novo Usuário</a></li>
-        <li><a href="/usuarios">Usuários</a></li>
-        
-        <li><a href="/usuario/entrar">Entrar</a></li>
-      </ul>
+  
+  <header class="top-bar">
+		<a class="mobile-nav" href="#"><i class="pe-7s-menu"></i></a>
+		<div class="main-logo"><span>Tempo de Ofertas</span></div>
+		<input type="checkbox" id="s-logo" class="sw" />
+		
+		
+		<ul class="profile">
+			<li>
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" onclick="return false;" class="profile__user">
+					<figure class="pull-left rounded-image profile__img">
+						<!--<img class="media-object" src="images/thumb0.jpg" alt="user">-->
+					</figure>
+					<span class="profile__name">
+						Bruno Cruz <i class="pe-7s-angle-down"></i>
+					</span>
+				</a>
+				<ul class="dropdown-menu pull-right">
+					<li><a href="#"><i class="icon pe-7s-info"></i> Edit Profile</a></li>
+					<li><a href="#"><i class="icon pe-7s-date"></i> My Calendar</a></li>
+					<li><a href="login.html"><i class="icon pe-7s-close-circle"></i> Log Out</a></li>
+				</ul>
+			</li>
+			<li class="profile--higlighted">
+				<span class="badge profile__badge badge--red">8</span>
+				<a class="dropdown-toggle" data-toggle="dropdown" onclick="return false;" href="#">
+					<i class="pe-7f-mail"></i>
+				</a>
+				<ul class="dropdown-menu pull-right">
+					<li><a href="#"><i class="icon pe-7s-mail"></i> You have 8 unread messages</a></li>
+				</ul>
+			</li>
+			<li class="profile--higlighted">
+				<span class="badge profile__badge badge--red">5</span>
+				<a class="dropdown-toggle" data-toggle="dropdown" onclick="return false;" href="#">
+					<i class="pe-7f-drawer"></i>
+				</a>
+				<ul class="dropdown-menu pull-right">
+					<li><a href="#"><i class="icon pe-7s-drawer"></i> You have 5 new notifications</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">
+					<i class="pe-7f-config"></i>
+				</a>
+			</li>
+		</ul>
+
+	</header>
+	
+	<div class="wrapper">
+
+		<aside class="sidebar">
+			<ul class="main-nav">
+				<li class="main-nav--active">
+					<a class="main-nav__link" href="/ciclos">
+						<span class="main-nav__icon"><i class="icon pe-7s-repeat"></i></span>
+						Ciclos
+					</a>
+				</li>
+				<li>
+					<a class="main-nav__link" href="/usuario">
+						<span class="main-nav__icon"><i class="icon pe-7s-user"></i></span>
+						Novo Usuário
+					</a>
+				</li>
+				<li>
+					<a class="main-nav__link" href="/usuarios">
+						<span class="main-nav__icon"><i class="icon pe-7s-user"></i></span>
+						Usuários
+					</a>
+				</li>
+				<li>
+					<a class="main-nav__link" href="usuario/entrar">
+						<span class="main-nav__icon"><i class="icon pe-7s-graph"></i></span>
+						Entrar
+					</a>
+				</li>
+			</ul>
+		</aside>
       
-      <div class="clearfix hero-unit">
-      
-      <div id="mensagem-callback"></div>
+    <div id="mensagem-callback"></div>

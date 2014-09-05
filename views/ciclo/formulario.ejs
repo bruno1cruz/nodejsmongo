@@ -1,0 +1,30 @@
+<% include ../header %>
+
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<article class="widget">
+				<header class="widget__header">
+					<h3 class="widget__title">Ciclo</h3>
+				</header>
+
+				<div class="widget__content">
+				
+					<form action="/ciclo" method="post">
+						
+						<input type="text" name="ciclo[nome]" placeholder="Nome" class="input-text">
+						<input type="text" name="ciclo[inicio]" placeholder="Início" class="input-text">
+						<input type="text" name="ciclo[fim]" placeholder="Fim" class="input-text">
+						
+						<button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
+					</form>
+
+					<div class="clearfix"></div>
+				</div>
+
+			</article>
+		</div>
+	</div>
+</section>
+
+<% include ../footer %>
