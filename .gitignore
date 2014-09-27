@@ -47,4 +47,6 @@ node_modules
 
 .lock-wscript
 
+# C9 IDE
 .c9
+.c9/*
