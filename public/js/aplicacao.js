@@ -1,3 +1,6 @@
+window._callback = function(){};
+
+
 var campanha ={
     
     salvar : function(e){
@@ -21,6 +24,19 @@ var campanha ={
             }
         });
         
+    },
+    carregar_imagem : function(e){
+        e.preventDefault();
+        
+        $("#modal_carregar_imagem").modal();
+        
+        _callback = function(status){
+            if ( status.ok ){
+                $("#modal_carregar_imagem").modal("hide");
+            } else {
+                $("#modal_carregar_imagem").find(".alert").show().text("Ocorreu um erro ao carregar a imagem.");
+            }
+        }
     }
     
     

@@ -47,7 +47,7 @@ module.exports = function(app) {
 			
 		},
 		cadastrar : function(req, res) {
-
+			
 			var campanha = req.body.campanha;
 
 			campanha.inicio = tools.toDate(campanha.inicio);
@@ -82,12 +82,31 @@ module.exports = function(app) {
 				eventEmitter.emit("campanha:created",campanha);
 				
 				res.json({
-						mensagem :'Campanha ' + campanha.nome + ' criada com sucesso.', 
-						redireciona:'/'+campanha.ciclo.url+'/campanha/'+campanha.url
-					
+					mensagem :'Campanha ' + campanha.nome + ' criada com sucesso.', 
+					redireciona:'/'+campanha.ciclo.url+'/campanha/'+campanha.url
 				});
 			});
 
+		},
+		carregar_imagem : function(req, res) {
+			
+			
+			var multiparty = require('multiparty');
+			
+			var form = new multiparty.Form();
+
+		    form.parse(req, function(err, fields, files) {
+		    	
+		    	var imagem = files.imagem[0];
+		    	
+				tools.upload({
+		      		fileName : "mkt/" + fields.cicloURL + "/" + fields.campanhaURL + "/" + fields.campanhaURL,
+		      		filePath : imagem.path,
+		      		contentType : imagem.headers["content-type"]
+	      		});
+		    });
+			
+			
 		}
 
 	};

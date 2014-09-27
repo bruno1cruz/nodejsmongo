@@ -6,6 +6,7 @@ module.exports = function(app) {
 	app.get('/:cicloURL/campanhas', campanhas.listar);
 	app.get('/:cicloURL/campanha/:campanhaURL', campanhas.get);
 	app.post('/:cicloURL/campanha', campanhas.cadastrar);
+	app.post('/:cicloURL/campanha/imagem', campanhas.carregar_imagem);
 	app.put('/:cicloURL/campanha', campanhas.atualizar);
 	
 };

@@ -12,7 +12,7 @@
 				
 					<form id="campanha_form" action="/<%=ciclo.url%>/campanha" method="post">
 	
-						<input type="text" name="campanha[nome]" placeholder="Nome" value="<%=campanha.nome%>" class="input-text">
+						<input type="text" name="campanha[nome]" placeholder="Nome" value="" class="input-text">
 						<input type="text" name="campanha[vouchers]" placeholder="Quantidade Vouchers" class="input-text">
 						<input type="text" name="campanha[inicio]" placeholder="Início DD/MM/YYYY HH:mm" class="input-text">
 						
@@ -26,9 +26,39 @@
 						
 						<button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
 					</form>
-
+					
 					<div class="clearfix"></div>
 				</div>
+				
+				<% if (campanha != null) { %>
+					<div class="widget__content">
+						<a href="#" id="carregar_imagem" class="btn btn-default"><span class="glyphicon glyphicon-picture"></span> Alterar Imagem</a>
+						
+						<div id="modal_carregar_imagem" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+										<h4 class="modal-title">Adicionar Imagem a Campanha</h4>
+									</div>
+									<div class="modal-body">
+										<p class="alert alert-danger" style="display:none"></p>
+										<form id="campanha_imagem_form" action="/<%=ciclo.url%>/campanha/imagem" target="_download" method="post" enctype="multipart/form-data">
+											<input name="imagem" type="file">
+											<input name="campanhaURL" type="hidden" value="<%=campanha.url%>">
+											<input name="cicloURL" type="hidden" value="<%=campanha.ciclo.url%>">
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" onclick="$('#campanha_imagem_form').submit();">Carregar</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				<% } %>
 
 			</article>
 		</div>
@@ -40,7 +70,9 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#campanha_form").on("submit", campanha.salvar);
+		$("#carregar_imagem").on("click", campanha.carregar_imagem);
 	});
 </script>
 
+<% include ../download %>
 <% include ../footer %>
