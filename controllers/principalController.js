@@ -6,8 +6,12 @@ module.exports = function(app) {
     index: function(req, res) {
       res.render('index');
     },
-
-    login: function(req, res) {
+    entrarFormulario : function(req,res){
+      
+      res.render('usuario/entrar');
+      
+    },entrar: function(req, res) {
+      
       var query = {email: req.body.usuario.email};
       Usuario.findOne(query)
              .select('nome email')

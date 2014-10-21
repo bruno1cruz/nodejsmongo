@@ -1,6 +1,7 @@
 module.exports = function(app) {
 
 	var Usuario = app.models.usuario;
+	var ObjectId = require('mongoose').Types.ObjectId;
 
 	var UsuarioController = {
 
@@ -18,7 +19,21 @@ module.exports = function(app) {
 			});
 
 		},
+		atualizar : function(req, res) {
+			
+			var usuarioForm = req.body.usuario;
+			
+			var usuarioUpdate = { 
+					cpf : usuarioForm.cpf, nome : 
+					usuarioForm.nome, 
+					email : usuarioForm.email
+			};
+			
+			Usuario.update({"_id" : new ObjectId(usuarioForm.id)},usuarioUpdate,function(err,count){
+				res.redirect('/usuario/'+usuarioForm.id);
+			});
 
+		},
 		listar : function(req, res) {
 
 			Usuario.find({},function(err,usuarios){
@@ -28,11 +43,19 @@ module.exports = function(app) {
 			});
 			
 		},
-
-		entrar : function(req, res) {
-
-			res.render('usuario/entrar');
-
+		getAtualizar : function(req, res) {
+			
+			Usuario.findOne({"_id" : new ObjectId(req.params.usuarioId)},function(err,usuario){
+				res.render('usuario/formulario',{"usuario":usuario});
+			});
+			
+		},
+		get : function(req, res) {
+			
+			Usuario.findOne({"_id" : new ObjectId(req.params.usuarioId)},function(err,usuario){
+				res.render('usuario/visao',{"usuario":usuario});
+			});
+			
 		}
 
 	/*

@@ -5,5 +5,7 @@ module.exports = function(app) {
 	app.get('/ciclo', ciclos.novo);
 	app.get('/ciclos', ciclos.listar);
 	app.post('/ciclo', ciclos.cadastrar);
+	app.post('/ciclo/:cicloURL/ativar', ciclos.ativar);
+	app.post('/ciclo/:cicloURL/desativar', ciclos.desativar);
 
 };

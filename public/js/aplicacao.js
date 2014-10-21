@@ -28,11 +28,16 @@ var campanha ={
     carregar_imagem : function(e){
         e.preventDefault();
         
-        $("#modal_carregar_imagem").modal();
+        $("#modal_carregar_imagem").modal()
+            .on("hide.bs.modal", function(){
+                $(this).find(".alert").hide();
+            });
+        
         
         _callback = function(status){
             if ( status.ok ){
                 $("#modal_carregar_imagem").modal("hide");
+                $("#campanha_imagem").val("");
             } else {
                 $("#modal_carregar_imagem").find(".alert").show().text("Ocorreu um erro ao carregar a imagem.");
             }
@@ -40,4 +45,31 @@ var campanha ={
     }
     
     
-} 
+};
+
+var ciclo = {
+    ativar : function(e) {
+        e.preventDefault();
+        
+        $.ajax({
+            "url" : "/ciclo/"+ window.scope.ciclo.url +"/ativar",
+            "type":"POST",
+            "success" : function(){
+                alert("Ciclo Ativado");
+                window.location.reload()
+            }
+        });
+    },
+    desativar : function(e) {
+        e.preventDefault();
+        
+        $.ajax({
+            "url" : "/ciclo/"+ window.scope.ciclo.url +"/desativar",
+            "type":"POST",
+            "success" : function(){
+                alert("Ciclo Desativado");
+                window.location.reload()
+            }
+        });
+    }
+};

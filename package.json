@@ -1,5 +1,5 @@
 {
-  "name": "megatip-ofertas",
+  "name": "tempo-ofertas",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,6 +11,8 @@
 	  "express-load": "~1.1.8",
 	  "ejs": "~0.8.5",
 	  "socket.io": "~0.9.16",
-	  "mongoose": "~3.8.4"
+	  "mongoose": "~3.8.17",
+	  "method-override" :"2.2.0",
+	  "sendgrid": "1.2.1"
   }
 }

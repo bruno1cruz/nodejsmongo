@@ -1,18 +1,16 @@
 module.exports = function(app) {
 
 	var usuarios = app.controllers.usuarioController;
-	var passport = require("passport");
+	
 	
 	require("../middleware/passport");// configurando passport
 
 	app.get('/usuario', usuarios.novo);
+	app.get('/usuario/:usuarioId', usuarios.get);
+	app.get('/usuario/:usuarioId/editar', usuarios.getAtualizar);
 	app.get('/usuarios', usuarios.listar);
 	app.post('/usuario', usuarios.cadastrar);
-	
-	app.get('/usuario/entrar', usuarios.entrar);
-	
-	app.post('/usuario/entrar', passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/usuario/entrar',failureFlash: true }));
+	app.put('/usuario', usuarios.atualizar);
 
 	/*
 	app.get('/usuarios', usuarios.index);

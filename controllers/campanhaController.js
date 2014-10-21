@@ -99,11 +99,19 @@ module.exports = function(app) {
 		    	
 		    	var imagem = files.imagem[0];
 		    	
-				tools.upload({
-		      		fileName : "mkt/" + fields.cicloURL + "/" + fields.campanhaURL + "/" + fields.campanhaURL,
-		      		filePath : imagem.path,
-		      		contentType : imagem.headers["content-type"]
-	      		});
+		    	if (imagem.size > 0){
+		    		
+		    		tools.upload({
+			      		fileName : "mkt/" + fields.cicloURL + "/" + fields.campanhaURL + "/" + fields.campanhaURL,
+			      		filePath : imagem.path,
+			      		contentType : imagem.headers["content-type"]
+		      		}, function(status){
+						res.render("util/callback_iframe", {status: status});
+		      		});
+		    		
+		    	} else {
+		    		res.render("util/callback_iframe", {status: {ok: false, "mensagem" : "Nenhuma imagem selecionada"}});
+		    	}
 		    });
 			
 			
@@ -128,6 +136,9 @@ module.exports = function(app) {
 		}, function() {
 			console.log(campanha);
 		}, true);
+		
+		tools.mail("cruzbruno2000@yahoo.com.br","campanha iniciada", "Campanha " + campanha.nome + " iniciada.")
+		
 		
 	});
 

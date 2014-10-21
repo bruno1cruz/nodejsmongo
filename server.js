@@ -14,8 +14,10 @@ app.configure(function() {
   app.use(express.logger('dev'));
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
-  //app.use(express.json());
-  //app.use(express.urlencoded());
+  app.use(express.json());
+  app.use(express.urlencoded());
+  
+  app.use(express.methodOverride());
   
   app.use(express.compress(cfg.GZIP_LVL));
 
@@ -26,7 +28,7 @@ app.configure(function() {
   app.use(error.serverError);
   
   app.use(express.cookieParser());
-  app.use(express.methodOverride());
+ 
   app.use(express.session({ secret: 'keyboard cat' }));
   
   app.use(passport.initialize());
@@ -34,7 +36,6 @@ app.configure(function() {
   
   app.use(flash());
   
-
 });
 
 io.enable('browser client cache');
@@ -62,7 +63,7 @@ server.listen(port,ipaddress, function(){
 
 
 app.on('campanha:started',function(campanha){
-	console.log(campanha.nome);
+	console.log("Campanha \"" + campanha.nome + "\" iniciada.");
 	io.sockets.emit("campanha:started",campanha);
 });
 

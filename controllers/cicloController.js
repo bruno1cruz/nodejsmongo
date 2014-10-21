@@ -33,6 +33,42 @@ module.exports = function(app) {
 				res.render('ciclo/lista',{"ciclos":ciclos});
 				
 			});
+		},
+		ativar : function(req, res){
+			
+			Ciclo.update( { url : { "$ne" : req.params.cicloURL }  },
+						  { ativo :  false },
+						  { multi:true },
+						  function(err){
+						  	
+						  	if (err) {
+						  		res.status(400);
+							  	res.end();
+						  	} else {
+						  	
+							  	Ciclo.update( { url : req.params.cicloURL  },
+											  { ativo :  true  },
+											  {}, 
+											  function(err,rowCount){
+												res.status(204);
+											  	res.end();
+												}
+								);
+						  	}
+						  	
+						  });
+		},
+		desativar : function(req, res){
+			
+			Ciclo.update( 
+				{ url : req.params.cicloURL  },
+				{ ativo :  false  },
+				{}, 
+				function(err,rowCount){
+					res.status(204);
+					res.end();
+				}
+			);
 			
 		}
 	}
