@@ -4,8 +4,8 @@
 
     <script type="text/javascript">
         (function(){
-            window.parent._callback();
-        }()
+            window.parent._callback( <%-JSON.stringify(status)%> );
+        })()
     </script>
 
 </body>

@@ -1,0 +1,9 @@
+<% include ../header %>
+
+Nome : <%=usuario.nome%>
+E-mail : <%=usuario.email%>
+CPF : <%=usuario.cpf%>
+
+<a href="/usuario/<%= usuario.id%>/editar">Atualizar</a>
+
+<% include ../footer %>

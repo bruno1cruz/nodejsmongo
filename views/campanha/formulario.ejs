@@ -1,5 +1,9 @@
 <% include ../header %>
 
+<%if (locals.campanha==null){
+	locals.campanha = { ciclo : {} };
+}%>
+
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -30,7 +34,7 @@
 					<div class="clearfix"></div>
 				</div>
 				
-				<% if (campanha != null) { %>
+				<% if (campanha.id != null) { %>
 					<div class="widget__content">
 						<a href="#" id="carregar_imagem" class="btn btn-default"><span class="glyphicon glyphicon-picture"></span> Alterar Imagem</a>
 						
@@ -44,7 +48,7 @@
 									<div class="modal-body">
 										<p class="alert alert-danger" style="display:none"></p>
 										<form id="campanha_imagem_form" action="/<%=ciclo.url%>/campanha/imagem" target="_download" method="post" enctype="multipart/form-data">
-											<input name="imagem" type="file">
+											<input name="imagem" id="campanha_imagem" type="file">
 											<input name="campanhaURL" type="hidden" value="<%=campanha.url%>">
 											<input name="cicloURL" type="hidden" value="<%=campanha.ciclo.url%>">
 										</form>

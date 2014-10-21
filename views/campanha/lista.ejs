@@ -8,7 +8,12 @@
 				<header class="widget__header">
 					<h3 class="widget__title"><%=ciclo.nome%> &gt; Campanhas</h3>
 					<div class="widget__config">
-						<a href="/<%=ciclo.url%>/campanha">Nova Campanha</a>
+						<a href="/<%=ciclo.url%>/campanha">Nova Campanha</a> | 
+						<%if (ciclo.ativo){%>
+							<a href="#" id="desativar_ciclo">Desativar Ciclo</a>
+						<%}else {%>
+							<a href="#" id="ativar_ciclo">Ativar Ciclo</a>
+						<%}%>
 					</div>
 				</header>
 				
@@ -39,5 +44,16 @@
 		</div>
 	</div>
 </section>
+
+
+<% include ../footer_js %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		window.scope =  { ciclo : { url : "<%=ciclo.url%>" }};
+		$("#ativar_ciclo").on( "click", ciclo.ativar );
+		$("#desativar_ciclo").on( "click", ciclo.desativar );
+	});
+</script>
 
 <% include ../footer %>

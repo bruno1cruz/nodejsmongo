@@ -1,5 +1,10 @@
 <% include ../header %>
 
+
+<%if (locals.usuario==null){
+	locals.usuario = {nome:"",cpf:"",email:""};
+}%>
+
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -12,13 +17,18 @@
 				
 					<form action="/usuario" method="post">
 	
-						<input type="text" name="usuario[nome]" placeholder="Nome" class="input-text">
-						<input type="text" name="usuario[cpf]" placeholder="CPF" class="input-text">
-						<input type="text" name="usuario[email]" placeholder="E-mail" class="input-text">
-						<input type="password" name="usuario[senha]" placeholder="Senha" class="input-text">
-					
-						
-						<button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
+						<input type="text" name="usuario[nome]" placeholder="Nome" class="input-text" value="<%=usuario.nome%>">
+						<input type="text" name="usuario[cpf]" placeholder="CPF" class="input-text" value="<%=usuario.cpf%>">
+						<input type="text" name="usuario[email]" placeholder="E-mail" class="input-text" value="<%=usuario.email%>">
+
+						<%if (usuario){%>
+							<input type="hidden" name="usuario[id]" value="<%=usuario.id%>"/>
+							<input type="hidden" name="_method" value="PUT"/>
+							<button type="submit" class="btn btn-primary pull-right">Atualizar</button>
+						<%} else {%>
+							<input type="password" name="usuario[senha]" placeholder="Senha" class="input-text">
+							<button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
+						<%}%>
 					</form>
 
 					<div class="clearfix"></div>
@@ -28,5 +38,4 @@
 		</div>
 	</div>
 </section>
-
 <% include ../footer %>
